@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-colors-alpha</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <style>
+        div.mario {
+            background: url(imgs/mario.png) no-repeat center /contain;
+
+            height: 400px;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto;
+            width: 300px;
+            border: 2px solid blue;
+            div {
+                height: 100px;
+                width: 100px;
+                &.box01 {background-color: #ffffff;}
+                &.box02 {background-color: #fffffff4;}
+                &.box03 {background-color: #ffffffdf;}
+                &.box04 {background-color: #ffffffb8;}
+                &.box05 {background-color: #ffffffa6;}
+                &.box06 {background-color: #ffffff88;}
+                &.box07 {background-color: #ffffff67;}
+                &.box08 {background-color: #ffffff55;}
+                &.box09 {background-color: #ffffff49;}
+                &.box10 {background-color: #ffffff27;}
+                &.box11 {background-color: #ffffff15;}
+                &.box12 {background-color: #ffffff05;}
+            }
+        }
+    </style>
+</head>
+<body class="css">
+    <nav class="back">
+        <a href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="#000000" viewBox="0 0 256 256"><path d="M232,56A104.11,104.11,0,0,1,128,160H88v40a8,8,0,0,1-13.66,5.66l-48-48a8,8,0,0,1,0-11.32l48-48A8,8,0,0,1,88,104v40h40a88.1,88.1,0,0,0,88-88,8,8,0,0,1,16,0Z"></path></svg>
+        </a>
+    </nav>
+    <main>
+        <header class="mainmenu internal">
+            <h1>12-colors-alpha</h1>
+            <img src="../src/imgs/logo-css.png" alt="css">
+            <h3>El cuarto canal alfa permite aplicar opacidad o transparencia al color.</h3>
+        </header>
+        <section>
+            <h2 class="subtitle">Ejemplo:</h2>
+        <div class="mario">
+            <div class="box01"></div>
+            <div class="box02"></div>
+            <div class="box03"></div>
+            <div class="box04"></div>
+            <div class="box05"></div>
+            <div class="box06"></div>
+            <div class="box07"></div>
+            <div class="box08"></div>
+            <div class="box09"></div>
+            <div class="box10"></div>
+            <div class="box11"></div>
+            <div class="box12"></div>
+        </div>
+
+        </section>
+    </main>
+</body>

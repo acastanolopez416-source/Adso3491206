@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-position - Posicionamiento CSS</title>
+    <link rel="stylesheet" href="../src/css/styles.css"> 
+    
+    <style>
+        /* --- PALETA DE COLORES --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: #3498db;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .back a:hover {
+            color: #2980b9;
+        }
+
+        header.mainmenu {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        header img {
+            max-width: 100px;
+            margin: 10px 0;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header h3 {
+            color: #6c757d;
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        /* --- ESTILOS DE LAS TABLAS EXPLICATIVAS --- */
+        .tabla-explicativa {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tabla-explicativa th, .tabla-explicativa td {
+            border: 1px solid #e9ecef;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .tabla-explicativa th {
+            background-color: #f1f3f5;
+            font-weight: 600;
+            color: #495057;
+            width: 180px;
+        }
+
+        .tabla-explicativa code {
+            background-color: #e9ecef;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        /* --- ESTILOS DE LA ZONA INTERACTIVA --- */
+        .interactive-section {
+            background: #ffffff;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .interactive-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #e9ecef;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            width: 100px;
+            color: #495057;
+        }
+
+        select, input[type="range"] {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-family: inherit;
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            accent-color: #3498db;
+            cursor: pointer;
+        }
+
+        .value-display {
+            font-family: 'Courier New', Courier, monospace;
+            background: #ffffff;
+            padding: 4px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            min-width: 60px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* --- CONTENEDOR DE PRUEBA --- */
+        .preview-area {
+            border: 2px dashed #adb5bd;
+            padding: 20px;
+            min-height: 300px;
+            background-color: #f1f3f5;
+            position: relative; /* Clave para el posicionamiento absoluto */
+            overflow: hidden; /* Para que no se salga si movemos mucho */
+            border-radius: 8px;
+        }
+
+        .preview-area::before {
+            content: "Contenedor Padre (position: relative)";
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Caja estática de referencia */
+        .caja-estatica {
+            width: 150px;
+            height: 80px;
+            background-color: #adb5bd;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        /* Caja que vamos a mover */
+        #caja-prueba {
+            width: 150px;
+            height: 80px;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* --- SECCIÓN DE VISUALIZACIÓN --- */
+        .visualizacion-demo {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .caja-visual {
+            width: 100px;
+            height: 100px;
+            background-color: #e74c3c;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        .caja-visual.oculta-display {
+            display: none;
+        }
+
+        .caja-visual.oculta-visibility {
+            visibility: hidden;
+        }
+
+        /* --- ESTILOS DE LOS EJEMPLOS DE CÓDIGO --- */
+        .code-example {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            margin-top: 30px;
+            overflow-x: auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+            line-height: 1.5;
+        }
+        
+        .code-example .comment { color: #5c6370; font-style: italic; }
+        .code-example .property { color: #e06c75; }
+        .code-example .value { color: #98c379; }
+        .code-example .selector { color: #61afef; }
+    </style>
+</head>
+<body class="css">
+    
+    <nav class="back">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
+            Volver al índice
+        </a>
+    </nav>
+
+    <main>
+        <header class="mainmenu internal">
+            <h1>15-position - Posicionamiento CSS</h1>
+            <img src="../src/imgs/logo-css.png" alt="css">
+            <h3>Controla la posición exacta de los elementos en la página.</h3>
+        </header>
+
+        <!-- SECCIÓN INTERACTIVA -->
+        <section class="interactive-section">
+            <h2>Demostración Interactiva de Position</h2>
+            <p style="text-align: center; color: #6c757d;">Selecciona un tipo de posicionamiento y ajusta los valores para ver cómo se mueve la caja azul.</p>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <label for="tipo-position">Position:</label>
+                    <select id="tipo-position">
+                        <option value="static">static (normal)</option>
+                        <option value="relative">relative (relativo)</option>
+                        <option value="absolute">absolute (absoluto)</option>
+                        <option value="fixed">fixed (fijo)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="input-top">Top:</label>
+                    <input type="range" id="input-top" min="-50" max="200" value="0">
+                    <span id="val-top" class="value-display">0px</span>
+                </div>
+                <div class="control-group">
+                    <label for="input-left">Left:</label>
+                    <input type="range" id="input-left" min="-50" max="300" value="0">
+                    <span id="val-left" class="value-display">0px</span>
+                </div>
+            </div>
+
+            <div class="preview-area">
+                <!-- Caja estática de referencia -->
+                <div class="caja-estatica">Caja Normal (Flujo)</div>
+                <!-- Este es el div que se modificará -->
+                <div id="caja-prueba">¡Yo me muevo!</div>
+                <!-- Otra caja para ver cómo afecta al flujo -->
+                <div class="caja-estatica" style="margin-top: 10px;">Caja Normal (Flujo)</div>
+            </div>
+
+            <!-- Ejemplos de Código CSS -->
+            <div class="code-example">
+                <span class="comment">/* Ejemplo de Posicionamiento Relativo */</span><br>
+                <span class="selector">.caja</span> { <span class="property">position</span>: <span class="value">relative</span>; <span class="property">top</span>: <span class="value">20px</span>; <span class="property">left</span>: <span class="value">30px</span>; }<br><br>
+                
+                <span class="comment">/* Ejemplo de Posicionamiento Absoluto */</span><br>
+                <span class="selector">.caja</span> { <span class="property">position</span>: <span class="value">absolute</span>; <span class="property">top</span>: <span class="value">50px</span>; <span class="property">left</span>: <span class="value">50px</span>; }
+            </div>
+        </section>
+
+        <!-- TABLAS EXPLICATIVAS (Basadas en el PDF) -->
+        <table class="tabla-explicativa">
+            <tr>
+                <th>position</th>
+                <td>Posicionamiento</td>
+            </tr>
+            <tr>
+                <th>Valores</th>
+                <td><code>static</code> | <code>relative</code> | <code>absolute</code> | <code>fixed</code> | <code>inherit</code></td>
+            </tr>
+            <tr>
+                <th>Se aplica a</th>
+                <td>Todos los elementos</td>
+            </tr>
+            <tr>
+                <th>Valor inicial</th>
+                <td><code>static</code></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>Selecciona el posicionamiento con el que se mostrará el elemento</td>
+            </tr>
+        </table>
+
+        <table class="tabla-explicativa">
+            <tr>
+                <th>top, right, bottom, left</th>
+                <td>Desplazamiento</td>
+            </tr>
+            <tr>
+                <th>Valores</th>
+                <td><code>&lt;medida&gt;</code> | <code>&lt;porcentaje&gt;</code> | <code>auto</code> | <code>inherit</code></td>
+            </tr>
+            <tr>
+                <th>Se aplica a</th>
+                <td>Todos los elementos posicionados</td>
+            </tr>
+            <tr>
+                <th>Valor inicial</th>
+                <td><code>auto</code></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>Indican el desplazamiento horizontal y vertical del elemento respecto de su posición original</td>
+            </tr>
+        </table>
+
+        <!-- SECCIÓN DE VISUALIZACIÓN -->
+        <section class="interactive-section" style="margin-top: 40px;">
+            <h2>Visualización: display vs visibility</h2>
+            <p style="text-align: center; color: #6c757d;">Compara cómo <code>display: none</code> elimina el elemento del flujo, mientras que <code>visibility: hidden</code> lo oculta pero mantiene su espacio.</p>
+            
+            <div class="visualizacion-demo">
+                <div>
+                    <h3 style="text-align: center;">display: none</h3>
+                    <div class="caja-visual oculta-display">1</div>
+                    <div class="caja-visual" style="background-color: #3498db;">2</div>
+                    <div class="caja-visual" style="background-color: #3498db;">3</div>
+                </div>
+                <div>
+                    <h3 style="text-align: center;">visibility: hidden</h3>
+                    <div class="caja-visual oculta-visibility">1</div>
+                    <div class="caja-visual" style="background-color: #3498db;">2</div>
+                    <div class="caja-visual" style="background-color: #3498db;">3</div>
+                </div>
+            </div>
+        </section>
+
+    </main>   
+
+    <!-- SCRIPT DE INTERACTIVIDAD -->
+    <script>
+        // 1. Seleccionamos los elementos
+        const tipoPosition = document.getElementById('tipo-position');
+        const inputTop = document.getElementById('input-top');
+        const valTop = document.getElementById('val-top');
+        const inputLeft = document.getElementById('input-left');
+        const valLeft = document.getElementById('val-left');
+        const cajaPrueba = document.getElementById('caja-prueba');
+
+        // 2. Función para actualizar la posición
+        function actualizarPosicion() {
+            const tipo = tipoPosition.value;
+            const top = inputTop.value + 'px';
+            const left = inputLeft.value + 'px';
+
+            // Aplicamos el tipo de posicionamiento
+            cajaPrueba.style.position = tipo;
+
+            // Si es static, no aplicamos top/left porque no funcionan
+            if (tipo === 'static') {
+                cajaPrueba.style.top = 'auto';
+                cajaPrueba.style.left = 'auto';
+                inputTop.disabled = true;
+                inputLeft.disabled = true;
+                valTop.textContent = 'N/A';
+                valLeft.textContent = 'N/A';
+            } else {
+                cajaPrueba.style.top = top;
+                cajaPrueba.style.left = left;
+                inputTop.disabled = false;
+                inputLeft.disabled = false;
+                valTop.textContent = top;
+                valLeft.textContent = left;
+            }
+
+            // Nota: Para 'fixed', la caja se posiciona respecto a la ventana del navegador.
+            // Para 'absolute', respecto al contenedor padre (que tiene position: relative).
+            // Para 'relative', respecto a su posición original.
+        }
+
+        // 3. Escuchamos los cambios
+        tipoPosition.addEventListener('change', actualizarPosicion);
+        inputTop.addEventListener('input', actualizarPosicion);
+        inputLeft.addEventListener('input', actualizarPosicion);
+
+        // 4. Inicializamos
+        actualizarPosicion();
+    </script>
+</body>
+</html>
