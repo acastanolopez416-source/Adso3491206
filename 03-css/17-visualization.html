@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17-visualization - Visualización CSS</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+    
+    <style>
+        /* --- PALETA DE COLORES --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: #3498db;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .back a:hover {
+            color: #2980b9;
+        }
+
+        header.mainmenu {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        header img {
+            max-width: 100px;
+            margin: 10px 0;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header h3 {
+            color: #6c757d;
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        /* --- ESTILOS DE LA ZONA INTERACTIVA --- */
+        .interactive-section {
+            background: #ffffff;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .interactive-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        /* --- ÁREAS DE PREVISUALIZACIÓN --- */
+        .preview-area {
+            border: 2px dashed #adb5bd;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+            min-height: 180px;
+            margin-bottom: 20px;
+        }
+
+        .preview-area::before {
+            content: "Área de prueba";
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 10px;
+            color: #adb5bd;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* --- CAJAS DE DEMOSTRACIÓN --- */
+        .caja-demo {
+            width: 80px;
+            height: 80px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Contenedor Flex para las cajas de display/visibility */
+        .flex-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+        }
+
+        /* --- ESTILOS PARA OVERFLOW --- */
+        .caja-overflow {
+            width: 200px;
+            height: 100px;
+            background-color: #e9ecef;
+            border: 2px solid #adb5bd;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #495057;
+        }
+
+        /* --- ESTILOS PARA Z-INDEX --- */
+        .z-container {
+            position: relative;
+            height: 150px;
+            width: 200px;
+            margin: 0 auto;
+            background-color: #f1f3f5;
+            border-radius: 8px;
+            border: 1px dashed #adb5bd;
+        }
+
+        .capa {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .capa-1 {
+            background-color: #e74c3c; /* Rojo */
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+
+        .capa-2 {
+            background-color: #3498db; /* Azul */
+            top: 50px;
+            left: 60px;
+            z-index: 2;
+        }
+
+        /* --- CONTROLES --- */
+        .controles {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            background: #f1f3f5;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #e9ecef;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            width: 100px;
+            color: #495057;
+        }
+
+        select, input[type="range"] {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            font-family: inherit;
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            accent-color: #3498db;
+            cursor: pointer;
+        }
+
+        .valor-mostrado {
+            font-family: 'Courier New', Courier, monospace;
+            background: #ffffff;
+            padding: 4px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            min-width: 60px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* --- ESTILOS DE LOS EJEMPLOS DE CÓDIGO --- */
+        .code-example {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            margin-top: 20px;
+            overflow-x: auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+            line-height: 1.5;
+        }
+        
+        .code-example .comment { color: #5c6370; font-style: italic; }
+        .code-example .property { color: #e06c75; }
+        .code-example .value { color: #98c379; }
+        .code-example .selector { color: #61afef; }
+
+        /* --- TABLAS --- */
+        .tabla-explicativa {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tabla-explicativa th, .tabla-explicativa td {
+            border: 1px solid #e9ecef;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .tabla-explicativa th {
+            background-color: #f1f3f5;
+            font-weight: 600;
+            color: #495057;
+            width: 150px;
+        }
+
+        .tabla-explicativa code {
+            background-color: #e9ecef;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #d63384;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="css">
+    
+    <nav class="back">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
+            Volver al índice
+        </a>
+    </nav>
+
+    <main>
+        <header class="mainmenu internal">
+            <h1>17-visualization - Visualización CSS</h1>
+            <img src="../src/imgs/logo-css.png" alt="css">
+            <h3>Controla cómo se muestran, ocultan y superponen los elementos en la página.</h3>
+        </header>
+
+        <!-- SECCIÓN 1: DISPLAY Y VISIBILITY -->
+        <section class="interactive-section">
+            <h2>1. Display vs Visibility</h2>
+            <p style="text-align: center; color: #6c757d;">Observa cómo <code>display: none</code> elimina el elemento del flujo, mientras que <code>visibility: hidden</code> lo oculta pero mantiene su espacio.</p>
+            
+            <div class="preview-area">
+                <div class="flex-container">
+                    <div class="caja-demo" style="background-color: #3498db;">1</div>
+                    <div class="caja-demo" id="caja-display" style="background-color: #e74c3c;">2</div>
+                    <div class="caja-demo" style="background-color: #3498db;">3</div>
+                    <div class="caja-demo" id="caja-visibility" style="background-color: #e74c3c;">4</div>
+                    <div class="caja-demo" style="background-color: #3498db;">5</div>
+                </div>
+            </div>
+
+            <div class="controles">
+                <div class="control-group">
+                    <label for="select-display">Display (Caja 2):</label>
+                    <select id="select-display">
+                        <option value="block">block (visible)</option>
+                        <option value="none">none (oculto)</option>
+                        <option value="inline">inline</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="select-visibility">Visibility (Caja 4):</label>
+                    <select id="select-visibility">
+                        <option value="visible">visible (visible)</option>
+                        <option value="hidden">hidden (oculto)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: OVERFLOW -->
+        <section class="interactive-section">
+            <h2>2. Overflow</h2>
+            <p style="text-align: center; color: #6c757d;">Controla qué sucede cuando el contenido es más grande que su contenedor.</p>
+            
+            <div class="preview-area">
+                <div class="caja-overflow" id="caja-overflow">
+                    <strong>Overflow:</strong> Este es un texto muy largo que probablemente no quepa en la caja de 200x100px. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+            </div>
+
+            <div class="controles">
+                <div class="control-group">
+                    <label for="select-overflow">Overflow:</label>
+                    <select id="select-overflow">
+                        <option value="visible">visible (por defecto)</option>
+                        <option value="hidden">hidden (ocultar)</option>
+                        <option value="scroll">scroll (barras siempre)</option>
+                        <option value="auto">auto (barras si es necesario)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Z-INDEX -->
+        <section class="interactive-section">
+            <h2>3. Z-Index (Capas)</h2>
+            <p style="text-align: center; color: #6c757d;">Controla el orden tridimensional de los elementos superpuestos.</p>
+            
+            <div class="preview-area">
+                <div class="z-container">
+                    <div class="capa capa-1" id="capa-1">Capa 1</div>
+                    <div class="capa capa-2" id="capa-2">Capa 2</div>
+                </div>
+            </div>
+
+            <div class="controles">
+                <div class="control-group">
+                    <label for="input-z1">Z-Index Capa 1 (Roja):</label>
+                    <input type="range" id="input-z1" min="0" max="5" value="1">
+                    <span id="val-z1" class="valor-mostrado">1</span>
+                </div>
+                <div class="control-group">
+                    <label for="input-z2">Z-Index Capa 2 (Azul):</label>
+                    <input type="range" id="input-z2" min="0" max="5" value="2">
+                    <span id="val-z2" class="valor-mostrado">2</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABLAS EXPLICATIVAS (Basadas en el PDF) -->
+        <table class="tabla-explicativa">
+            <tr>
+                <th>display</th>
+                <td>Visualización de un elemento</td>
+            </tr>
+            <tr>
+                <th>Valores</th>
+                <td><code>inline</code> | <code>block</code> | <code>none</code> | <code>inline-block</code> | <code>inherit</code> ...</td>
+            </tr>
+            <tr>
+                <th>Se aplica a</th>
+                <td>Todos los elementos</td>
+            </tr>
+            <tr>
+                <th>Valor inicial</th>
+                <td><code>inline</code></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>Permite controlar la forma de visualizar un elemento e incluso ocultarlo</td>
+            </tr>
+        </table>
+
+        <table class="tabla-explicativa">
+            <tr>
+                <th>visibility</th>
+                <td>Visibilidad de un elemento</td>
+            </tr>
+            <tr>
+                <th>Valores</th>
+                <td><code>visible</code> | <code>hidden</code> | <code>collapse</code> | <code>inherit</code></td>
+            </tr>
+            <tr>
+                <th>Se aplica a</th>
+                <td>Todos los elementos</td>
+            </tr>
+            <tr>
+                <th>Valor inicial</th>
+                <td><code>visible</code></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>Permite hacer visibles e invisibles a los elementos</td>
+            </tr>
+        </table>
+
+        <table class="tabla-explicativa">
+            <tr>
+                <th>overflow</th>
+                <td>Parte sobrante de un elemento</td>
+            </tr>
+            <tr>
+                <th>Valores</th>
+                <td><code>visible</code> | <code>hidden</code> | <code>scroll</code> | <code>auto</code> | <code>inherit</code></td>
+            </tr>
+            <tr>
+                <th>Se aplica a</th>
+                <td>Elementos de bloque y celdas de tablas</td>
+            </tr>
+            <tr>
+                <th>Valor inicial</th>
+                <td><code>visible</code></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>Permite controlar los contenidos sobrantes de un elemento</td>
+            </tr>
+        </table>
+
+        <table class="tabla-explicativa">
+            <tr>
+                <th>z-index</th>
+                <td>Orden tridimensional</td>
+            </tr>
+            <tr>
+                <th>Valores</th>
+                <td><code>auto</code> | <code>&lt;numero&gt;</code> | <code>inherit</code></td>
+            </tr>
+            <tr>
+                <th>Se aplica a</th>
+                <td>Elementos que han sido posicionados explícitamente</td>
+            </tr>
+            <tr>
+                <th>Valor inicial</th>
+                <td><code>auto</code></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>Establece el nivel tridimensional en el que se muestra el elemento</td>
+            </tr>
+        </table>
+
+    </main>   
+
+    <!-- SCRIPT DE INTERACTIVIDAD -->
+    <script>
+        // --- 1. DISPLAY Y VISIBILITY ---
+        const selectDisplay = document.getElementById('select-display');
+        const selectVisibility = document.getElementById('select-visibility');
+        const cajaDisplay = document.getElementById('caja-display');
+        const cajaVisibility = document.getElementById('caja-visibility');
+
+        selectDisplay.addEventListener('change', function() {
+            cajaDisplay.style.display = this.value;
+        });
+
+        selectVisibility.addEventListener('change', function() {
+            cajaVisibility.style.visibility = this.value;
+        });
+
+        // --- 2. OVERFLOW ---
+        const selectOverflow = document.getElementById('select-overflow');
+        const cajaOverflow = document.getElementById('caja-overflow');
+
+        selectOverflow.addEventListener('change', function() {
+            cajaOverflow.style.overflow = this.value;
+        });
+
+        // --- 3. Z-INDEX ---
+        const inputZ1 = document.getElementById('input-z1');
+        const inputZ2 = document.getElementById('input-z2');
+        const valZ1 = document.getElementById('val-z1');
+        const valZ2 = document.getElementById('val-z2');
+        const capa1 = document.getElementById('capa-1');
+        const capa2 = document.getElementById('capa-2');
+
+        function actualizarZIndex() {
+            const z1 = inputZ1.value;
+            const z2 = inputZ2.value;
+            
+            capa1.style.zIndex = z1;
+            capa2.style.zIndex = z2;
+            
+            valZ1.textContent = z1;
+            valZ2.textContent = z2;
+        }
+
+        inputZ1.addEventListener('input', actualizarZIndex);
+        inputZ2.addEventListener('input', actualizarZIndex);
+
+        // Inicializar
+        actualizarZIndex();
+    </script>
+</body>
+</html>

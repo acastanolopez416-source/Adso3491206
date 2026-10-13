@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 - Pseudo-classes</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <style>
+        /*:link | :hover | :active | :visited*/
+        .options {
+            a:link,
+            a:visited {
+                background-color: aliceblue;
+                color: black;
+                padding: 0.4rem 0.8rem;
+            }
+            a:hover {
+                background-color: #87129e;
+                color: white;
+            }
+            a:active {
+                background-color: #e41a1a;
+                color: white;
+            }
+            a:first-child {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+        /*:focus | :blur*/
+        input {
+            padding: 0.4rem ;
+            margin-top: 0.4rem;
+            &:focus {
+                background-color: #d664ec;
+                color: white;
+            }
+        }
+        /*:first-letter | :first-line*/
+        .paragraph {
+                &:first-letter {
+                font-size: 4rem;
+            }
+            &:first-line {
+                background-color: #d664ec;
+                color: #ffffff;
+            }
+        }
+        /*:before | :after*/
+        div.heart {
+            position: relative;
+            height: 100px;
+            &::after, &::before {
+                position: absolute;
+                content: "";
+                left: 0;
+                top: 0;
+                background-color: #e41a1a;
+                border-radius: 25px 25px 0 0;
+                height: 80px;
+                width: 50px;
+                margin: 0 150px;
+            }
+            &::before {
+                transform: rotate(-45deg);
+            }
+            &::after {
+                left: 21px;
+                transform: rotate(45deg);
+            }
+        }
+    </style>
+</head>
+<body class="css">
+    <nav class="back">
+        <a href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="#000000" viewBox="0 0 256 256"><path d="M232,56A104.11,104.11,0,0,1,128,160H88v40a8,8,0,0,1-13.66,5.66l-48-48a8,8,0,0,1,0-11.32l48-48A8,8,0,0,1,88,104v40h40a88.1,88.1,0,0,0,88-88,8,8,0,0,1,16,0Z"></path></svg>
+        </a>
+    </nav>
+    <main>
+        <header class="mainmenu internal">
+            <h1>20 - Pseudo-classes</h1>
+            <img src="../src/imgs/logo-css.png" alt="css">
+            <h3>Se utiliza para definir un estado especial de un elemento.</h3>
+        </header>
+        <section>
+            <h2 class="subtitle">:link|:hover|:active|:visited</h2>
+            <h4>:first-child|:last-child</h4>
+            <div class="options">
+                <a href="#">Option 1</a>
+                <a href="#">Option 2</a>
+                <a href="#">Option 3</a>
+            </div>
+            <h2 class="subtitle">:focus | :blur</h2>
+            <input type="text" placeholder="Enter your First Name">
+            <br>
+            <input type="text" placeholder="Enter your Last Name">
+            <h2 class="subtitle">:first-letter|:first-line</h2>
+            <p class="paragraph">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam est fugit omnis.
+            </p>
+            <h2 class="subtitle">:before|:after</h2>
+            <div class="heart"></div>
+        </section>
+    </main>
+</body>
