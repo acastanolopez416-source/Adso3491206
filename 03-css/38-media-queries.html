@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38-media-queries</title>
+    <style>
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+ *{
+    transition: all 0.4s ease;
+ }
+ body {
+    background-color: #003675;
+    font-family: poppins, sans-serif;
+    color: #fff;
+ }
+ main {
+    border: 4px solid #fff;
+    padding: 1rem;
+    height: 354px;
+    width: 1230px;
+ }
+ figure.logo{
+    background: url(imgs/pepsi01.png)no-repeat center;
+    height: 354px;
+    margin: 0 auto;
+    width:919px ;
+ }
+ h2 {
+    display: none;
+    text-align: center;
+ }
+ p{
+    line-height: 2rem;
+    text-align: justify;
+ }
+ @media (min-widht:1280px) {
+    body{
+        mian{
+            h2:first-of-type {display: block;}
+        }
+    }
+ }
+ @media(max-width:1280px){
+    body {
+        main{
+            h2:nth-of-type(2) {display: block;}
+            width: 800px;
+            figure.logo{
+                background: url(imgs/pepsi02.png)no-repeat center;
+                height: 366px;
+                margin: 0 auto;
+                width: 348px;
+            }
+        }
+  
+    }
+ }
+ @media(max-width:800px){
+    body {
+        main{
+            h2:last-of-type {display: block;}
+             h2:nth-of-type(2) {display: none;}
+            width: 350px;
+            figure.logo{
+                background: url(imgs/pepsi03.png)no-repeat center;
+                height: 166px;
+                margin: 0 auto;
+                width: 162px;
+            }
+        }
+  
+    }
+ }
+
+    </style>
+</head>
+<body>
+    <main>
+        <figure class="logo"></figure>
+        <h2>breackpoint: > 1280px <br> (resolusion:desktop)</h2>
+        <h2>breackpoint: > 1280px > 800px <br> (resolusion:tablet)</h2>
+        <h2>breackpoint: < 800px <br> (resolution:mobile)</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla sit minima iste eligendi veniam. Deserunt, necessitatibus. Itaque impedit blanditiis est repellendus numquam deserunt, ex at ab, nihil soluta asperiores ullam doloremque accusantium in temporibus ea? Sunt eaque harum temporibus rerum nam at nulla doloremque molestias illo voluptate recusandae repellat saepe labore tempora ipsam, ipsa adipisci dignissimos in quas neque quis esse. Sit quidem odit explicabo porro laudantium quaerat labore? Aliquid reiciendis dolorum magni natus iusto velit doloribus modi nostrum sunt perspiciatis culpa, omnis nulla atque numquam itaque hic accusamus non optio, quo sit vel ex. Nostrum doloremque labore nam explicabo consequatur quidem eum. Illum magni asperiores magnam minima aliquam sed quo iure rem, similique nam officia quas voluptates ad beatae, dicta facere rerum? Necessitatibus voluptatum nostrum nobis doloremque iure sequi, dignissimos mollitia repellat esse labore voluptate ad nam saepe quos cum magni quia iusto repudiandae sapiente eum itaque, inventore animi, sed dolorem? Praesentium nesciunt culpa temporibus voluptas ducimus architecto odit, quisquam iusto, dignissimos voluptatem sit mollitia, est perspiciatis impedit voluptatum et tempore iste possimus nemo quaerat voluptates consequatur. At consequatur quo quia. Quos, amet corrupti. Accusantium tempore culpa deserunt tempora. Ipsum, esse? Ratione pariatur culpa tempore, repellat earum repudiandae voluptas.</p>
+    </main>
+</body>
+</html>
