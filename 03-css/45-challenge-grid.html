@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>45-challenge-grid</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <style>
+
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 240px);
+
+    grid-template-areas:
+        "imagen1 imagen2 imagen3"
+        "imagen4 imagen2 imagen5"
+        "imagen6 imagen6 imagen7";
+
+    gap: 5px;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    background: #a5b5d5;
+}
+
+
+
+.wrapper-2 {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 2fr 2fr;
+
+    grid-template-rows: repeat(3, clamp(180px, 20vw, 260px));
+
+    grid-template-areas:
+        "imagen1 imagen1 imagen1 imagen2 imagen3"
+        "imagen1 imagen1 imagen1 imagen4 imagen4"
+        "imagen5 imagen6 imagen7 imagen4 imagen4";
+
+    grid-gap: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #a5b5d5;
+}
+
+
+
+.wrapper .item-1 {
+    grid-area: imagen1;
+}
+
+.wrapper .item-2 {
+    grid-area: imagen2;
+}
+
+.wrapper .item-3 {
+    grid-area: imagen3;
+}
+
+.wrapper .item-4 {
+    grid-area: imagen4;
+}
+
+.wrapper .item-5 {
+    grid-area: imagen5;
+}
+
+.wrapper .item-6 {
+    grid-area: imagen6;
+}
+
+.wrapper .item-7 {
+    grid-area: imagen7;
+}
+
+
+
+.wrapper-2 .items-1 {
+    grid-area: imagen1;
+}
+
+.wrapper-2 .items-2 {
+    grid-area: imagen2;
+}
+
+.wrapper-2 .items-3 {
+    grid-area: imagen3;
+}
+
+.wrapper-2 .items-4 {
+    grid-area: imagen4;
+}
+
+.wrapper-2 .items-5 {
+    grid-area: imagen5;
+}
+
+.wrapper-2 .items-6 {
+    grid-area: imagen6;
+}
+
+.wrapper-2 .items-7 {
+    grid-area: imagen7;
+}
+
+
+
+.wrapper div,
+.wrapper-2 div {
+    overflow: hidden;
+    border: 4px solid white;
+    border-radius: 13px;
+    min-width: 0;
+    min-height: 0;
+}
+
+
+
+.wrapper img,
+.wrapper-2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+
+
+
+@media (max-width: 600px) {
+
+
+    .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-rows: repeat(5, clamp(140px, 42vw, 190px));
+
+        grid-template-areas:
+            "imagen1 imagen2"
+            "imagen3 imagen2"
+            "imagen4 imagen5"
+            "imagen6 imagen6"
+            "imagen7 imagen7";
+    }
+
+
+
+
+    .wrapper-2 {
+        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-rows: repeat(6, clamp(140px, 42vw, 190px));
+
+        grid-template-areas:
+            "imagen1 imagen1"
+            "imagen1 imagen1"
+            "imagen2 imagen3"
+            "imagen4 imagen4"
+            "imagen5 imagen6"
+            "imagen7 imagen7";
+    }
+
+}
+
+</style>
+</head>
+<body class="css">
+    <nav class="back">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
+    </a>
+    </nav>
+    <main>
+    <header class="mainmenu internal">
+        <H1> 45-challenge-grid</H1>
+        <img src="../src/imgs/logo-css.png" alt="css">
+        <h3>Irregular Gallery.
+</h3>
+    </header>
+<section>
+    <div class="wrapper">
+        <div class="items item-1">
+            <img src="imgs/estudio ghibli 1.jpg" alt="estudio ghibli1">
+        </div>
+        <div class="items item-2 ">
+            <img src="imgs/estudio ghibli 2.jpg" alt="estudio ghibli2">
+        </div>
+        <div class="items item-3">
+            <img src="imgs/estudio ghibli 3.jpg" alt="estudio ghibli3">
+        </div>
+        <div class="items  item-4">
+            <img src="imgs/estudio ghibli 4.jpg" alt="estudio ghibli4">
+        </div>
+        <div class="items item-5">
+            <img src="imgs/estudio ghibli 5.jpg" alt="estudio ghibli5">
+        </div>
+        <div class=" items item-6">
+            <img src="imgs/estudio ghibli 6.jpg" alt="estudio ghibli6">
+        </div>
+        <div class="items item-7">
+            <img src="imgs/estudio ghibli1 7.jpg" alt="">
+        </div>
+    </div>
+    <div class="wrapper-2">
+        <div class="items-1">
+            <img src="imgs/clastlevania1.jpg" alt="imagen-1">
+        </div>
+        <div class="items-2">
+            <img src="imgs/clastlevania2.jpg" alt="imagen-2">
+        </div>
+        <div class="items-3">
+            <img src="imgs/clastlevania3.jpg" alt="imagen-3">
+        </div>
+        <div class="items-4">
+            <img src="imgs/clastlevania4.jpg" alt="imagen-4">
+        </div>
+        <div class="items-5">
+            <img src="imgs/clastlevania5.jpg" alt="imagen-5">
+        </div>
+        <div class="items-6">
+            <img src="imgs/clastlevania6.jpg" alt="imagen-6">
+        </div>
+        <div class="items-7">
+            <img src="imgs/clastlevania7.jpg" alt="imagen-7">
+        </div>
+    </div>
+</section>
+
+    </main>   
+</body>
+</html>
